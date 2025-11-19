@@ -1,32 +1,40 @@
-# This is a basic gitconfig template that includes some bare minimums for
-# interacting with git in a workspace.  The content between <Angle Brackets>
-# in this file must be replaced with values appropriate to you.  This can 
-# Be done manually or with the following series of commands run from the current
-# folder:
-#
-#  $ HOME=$(pwd) git config --global user.name "Bits the Dog"
-#  $ HOME=$(pwd) git config --global user.email "bits@datadoghq.com"
-#  $ HOME=$(pwd) git config --global user.signingkey "$(git config --global user.signingkey)"
-
 [user]
-        # The name you want to appear as the author of your commits
-        name = <YOUR NAME>
-	# The e-mail address that is associated to the author of your commits
-        email = <YOUR EMAIL>
-# This next section is optional and can be omitted if you do not use ssh git
-# commit signing.  However, doing so is highly encouraged, and if you have not
-# started using this workflow, see the onboarding docs for that:
-#    https://datadoghq.atlassian.net/wiki/spaces/SECENG/pages/2610300092/Project+Iota+Git+Commit+Signing+Onboarding
-#         # This is an ssh key that can be used to sign your commits, it should
-#         # be made available to your workspace via ssh agent forwarding and can be
-#         # seen on your laptop by issuing `git config --global user.signingkey`
-#         signingkey = <YOUR COMMIT SIGNING PUBLIC KEY>
-# [commit]
-# 	gpgsign = true
-# [gpg]
-# 	format = ssh
+	email = gabriel.margolis@datadoghq.com
+	name = Gabriel Margolis
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+	insteadOf = git://github.com/
+[include]
+	path = /Users/gabriel.margolis/.config/gitsign/gitconfig
+[core]
+	hooksPath = /usr/local/dd/global_hooks
+   	# tells git to start a daemon listening for file changes. This means that commands like
+   	# git status won't need to scan the whole repo to see what has changed  
+  	fsmonitor = true
 
-
-# This is a url rewrite that helps [go and maybe rust] tooling that downloads libraries from our private repos
-[url "git@github.com:DataDog/"]
-        insteadOf = https://github.com/DataDog/
+  	# tells git to cache files which are untracked by using mtime (which is sporadically supported by different filesystems)
+   	# this is generally fine at Datadog.  
+  	untrackedcache = true
+  
+  	# usually git rebuilds a graph of commits on the fly when running
+  	# git-log. This setting tells git to cache the commitgraph on disk to speed
+  	# up subsequent git-log operations
+  	commitgraph = true
+[maintenance]
+	repo = /Users/gabriel.margolis/go/src/github.com/DataDog/dd-source
+[push]
+	autoSetupRemote = true
+[merge]
+	conflictStyle = zdiff3
+[interactive]
+        diffFilter = delta --color-only
+[gc]
+	auto = 0
+[commit]
+	gpgsign = true
+[pack]
+	threads = 6
+[fetch]
+	prune = true
+[feature]
+	manyFiles = true

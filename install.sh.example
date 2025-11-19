@@ -25,3 +25,7 @@ while read df; do
   mkdir -p "$(dirname "$link")"
   ln -sf "$df" "$link"
 done
+
+# Gabe when setting up another workspace run the following command to get homebrew:
+# NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# then just allow the ssh agent to authenticate instead of providing the key yourself. 

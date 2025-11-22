@@ -30,7 +30,7 @@ done
 # NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # then just allow the ssh agent to authenticate instead of providing the key yourself. Or figure out how to do this automatically.
 
-# to authenticate
+# to authenticate ???
 # ddtool auth github login --org DataDog 
 
 # to grab a gt stack
